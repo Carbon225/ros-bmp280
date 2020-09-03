@@ -1,10 +1,16 @@
 #include <ros/ros.h>
 #include <ros_bmp280/Barometer.h>
 #include <raspberry_bmp280.h>
+#include <std_msgs/Empty.h>
 
 static double p0 = -1.;
 static bool calibrating = true;
 static int calibratingStep = 0;
+
+void calibrateCallback(const std_msgs::Empty::ConstPtr&)
+{
+    calibrating = true;
+}
 
 static void calibrate(double p)
 {
@@ -37,6 +43,7 @@ int main(int argc, char **argv)
     ros::NodeHandle nh;
 
     ros::Publisher bmpPub = nh.advertise<ros_bmp280::Barometer>("baro", 16);
+    ros::Subscriber calibrateSub = nh.subscribe("calibrate", 16, calibrateCallback);
 
     ROS_INFO("BMP node starting");
 
