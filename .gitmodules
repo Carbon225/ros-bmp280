@@ -1,0 +1,3 @@
+[submodule "lib/raspberry-bmp280"]
+	path = lib/raspberry-bmp280
+	url = https://github.com/Carbon225/raspberry-bmp280
