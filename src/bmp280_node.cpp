@@ -42,7 +42,7 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "bmp280_node");
     ros::NodeHandle nh;
 
-    ros::Publisher bmpPub = nh.advertise<ros_bmp280::Barometer>("baro", 16);
+    ros::Publisher bmpPub = nh.advertise<ros_bmp280::Barometer>("baro", 1);
     ros::Subscriber calibrateSub = nh.subscribe("calibrate", 16, calibrateCallback);
 
     ROS_INFO("BMP node starting");
